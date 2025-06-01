@@ -1,0 +1,53 @@
+## config.yaml
+training:
+  niters:
+    small: 2000
+    large: 4000
+  # initial_temperature is computed from the acceptance criterion:
+  # "T such that a solution 30% worse has a 0.5 acceptance probability"
+  initial_temperature: "computed_from_acceptance_criteria (w=30, acceptance_prob=0.5)"
+  cooling_rate: 0.97
+  max_non_improve: 300
+
+fleet:
+  truck:
+    capacity: 500        # in kg
+    speed: 35            # km/h
+    cost_per_km: 1
+  drone:
+    capacity: 30         # in kg
+    speed: 70            # km/h
+    endurance: 60        # minutes
+    eligibility_percent: 90
+
+alns_parameters:
+  removal_nodes:
+    r_L: 0.15
+    r_U:
+      small: 0.5
+      large: 0.3
+  adaptive_selection:
+    sigma1: 33
+    sigma2: 13
+    sigma3: 9
+    sigma4: 1
+    reaction_index: 0.6
+
+milp_parameters:
+  time_limit: 7200       # seconds
+  big_M: 1e6
+
+instance_generation:
+  customer_area:
+    sizes: [30, 40, 50]   # dimensions for regions: 30x30, 40x40, 50x50
+  num_instances: 15
+  instance_sizes:
+    small: [10, 25]
+    medium: [50, 75]
+    large: [100]
+
+cost_parameters:
+  truck_cost: 1
+  drone_cost: 0.2
+
+working_hours: 8         # hours
